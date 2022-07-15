@@ -1,0 +1,60 @@
+from random import randint
+
+print("Let’s Play 21...")
+
+#Create dealers cards, dealer sum, tell it to user
+dc1=randint(1,11)
+dc2=randint(1,11)
+dsum=dc1+dc2
+print("Here are the dealer’s cards:", dc1, "X")
+print()
+
+#Create user's cards and user's sum
+uc1=randint(1,11)
+uc2=randint(1,11)
+usum=uc1+uc2
+
+#Variable description
+cards = "Here are your cards: " + str(uc1) + " " + str(uc2)
+
+#The Game
+print("Turn: Player")
+hs="hit"
+while hs=="hit":
+    print(cards)
+    
+    #If user is below 21 points in card value
+    if usum<21:
+        hs=input("What would you like to do? (Hit/Stay): ").lower()
+        
+        #Hitting Results
+        if hs=="hit":
+            uc=randint(1,11)
+            cards = (cards + " " + str(uc))
+            usum = usum + uc
+            print()
+        
+        #Staying Results
+        else:
+            print()
+    
+    #If user gets over 21 points in card value
+    else:
+        break
+
+#The Outcomes
+if usum==21 and dsum!=21:
+    print("The user has 21 so the player wins! ( The Dealer had", dsum, ")")
+if usum!=21 and dsum==21:
+    print("The dealer has 21 so the dealer wins!")
+elif usum==dsum:
+    print("The player and the dealer tied at", dsum, "!")
+elif usum>21:
+    print("The player is over 21, the dealer wins with", dsum, "!")
+elif dsum>21:
+    print("The dealer is over 21, the player wins", usum, "!")
+elif usum>dsum:
+    print("The player has", usum, "and the dealer has", dsum, "so the player wins!")
+else:
+    print("The player has", usum, "and the dealer has", dsum, "so the dealer wins!")
+
